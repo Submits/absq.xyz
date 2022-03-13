@@ -69,7 +69,7 @@ function getInfo(){
                 <label class="loginLabel">&nbsp;Content</label><br>
                 <textarea id="content-` + x.data[i].ref.value.id + `" placeholder="Content" class="pasteTextArea">` + x.data[i].data.content + `</textarea><br><br>
                 <div style="text-align: left;">
-                <a style="color:white" href="index.html?id=` + x.data[i].data.id + `">https://submits.github.io?id=` + x.data[i].data.id  + `</a><br><br>
+                <a style="color:white" href="https://www.absq.xyz/?id=` + x.data[i].data.id + `">https://www.absq.xyz/?id=` + x.data[i].data.id  + `</a><br><br>
                     <button onclick="save('` + x.data[i].ref.value.id  + `')" class="saveButton">Save</button>
                     <button onclick=deletePaste('` + x.data[i].ref.value.id + `') class="redButton">Delete</button>
                 </div>
