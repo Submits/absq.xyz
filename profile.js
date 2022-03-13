@@ -52,12 +52,12 @@ function getProfileData(){
     .then(function (x) {
        
       x.data.reverse()
-      document.getElementById("pastecount").innerText = "Pastes [" + x.data.length + "]"
-      pastecount = x.data.length
+  
       for (let i = 0; i < x.data.length; i++) {
 
           if(x.data[i].data.author_id == ret.data.id)
           {
+                  pastecount += 1
               console.log(x.data[i])
              document.getElementById("pastes").innerHTML += `<div class="paste">
              <a href="https://submits.github.io?id=` + x.data[i].data.id + `" style="color: white; font-size: 20px;"><b>` +  x.data[i].data.title + `</b></a><br><br>
@@ -66,6 +66,7 @@ function getProfileData(){
           }
 
       }
+      document.getElementById("pastecount").innerText = "Pastes [" + pastecount + "]"
 
     });
 
