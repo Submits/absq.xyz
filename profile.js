@@ -36,6 +36,12 @@ function getProfileData(){
           {
               dev = `<i style="color:#575457; margin-left:5px; font-size:14px;" class="fas fa-cog"></i>`
           }
+      if(ret.data.sparkle == true)
+      {
+            document.getElementById("username").style.backgroundImage = "url('https://cdn.doxbin.com/gold.gif')"
+      }
+
+      
       
        let bio = ret.data.bio
             let embeds = bio.match(/\[embed\]https:\/\/www.youtube\.com\/embed\/(([a-zA-Z0-9-_]){11})\[embed\]/g)
