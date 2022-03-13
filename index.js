@@ -65,7 +65,7 @@ async function getPasteInfo(){
           if(images != null){
           for (let i = 0; i < images.length; i++) {
             content = content.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i] + "\">")
-          }
+           }
           }
 
           document.getElementById("title").innerHTML = ret.data.title
