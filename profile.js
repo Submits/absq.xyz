@@ -6,6 +6,8 @@ var client = new faunadb.Client({
   scheme: 'https',
 })
 
+let pastecount = 0
+
 let urlParams = new URLSearchParams(window.location.search);
 
 function getProfileData(){
