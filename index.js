@@ -61,10 +61,10 @@ async function getPasteInfo(){
           console.log(users[userinfo])
           console.log(ret.data)
 
-         let images = bio.match(/\[image\](http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)\[image\]/g)
+         let images = content.match(/\[image\](http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)\[image\]/g)
         if(images != null){
         for (let i = 0; i < images.length; i++) {
-          bio = bio.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i].replace(/\[image\]/g, "")  + "\">")
+          content = content.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i].replace(/\[image\]/g, "")  + "\">")
         }
       }
 
