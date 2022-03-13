@@ -36,6 +36,7 @@ function getInfo(){
         document.getElementById("pfp").value = ret.data.profile_image
         document.getElementById("bio").value = ret.data.bio
         document.getElementById("colour").value = ret.data.colour
+       document.getElementById("profileurl").innerHTML += `<br>Profile link: <a style="color:white" href="https://www.absq.xyz/profile?id=` + ret.data.id + `">https://www.absq.xyz/profile?id=` + ret.data.id + `</a>`
       
       })
         
