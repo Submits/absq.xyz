@@ -36,12 +36,27 @@ function getProfileData(){
           {
               dev = `<i style="color:#575457; margin-left:5px; font-size:14px;" class="fas fa-cog"></i>`
           }
+      
+       let bio = ret.data.bio
+            let embeds = bio.match(/\[embed\]https:\/\/www.youtube\.com\/embed\/(([a-zA-Z0-9-_]){11})\[embed\]/g)
+          if(embeds != null){
+          for (let i = 0; i < embeds.length; i++) {
+            bio = bio.replace(embeds[i], `<iframe style="border:none; border-radius:5px; width:100%; height:300px;" src="` + embeds[i].replace(/\[embed\]/g, "") + `"></iframe>`)
+          }
+        }
+
+        let images = bio.match(/\[image\](http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)\[image\]/g)
+        if(images != null){
+        for (let i = 0; i < images.length; i++) {
+          bio = bio.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i].replace(/\[image\]/g, "")  + "\">")
+        }
+      }
 
         document.getElementById("username").style.color = ret.data.colour
     document.getElementById("username").innerHTML = "<b>" + ret.data.username + "</b>" + verified + admin + dev
     document.getElementById("pfp").src = ret.data.profile_image
     document.getElementById("uid").innerHTML = "UID: <b>" + ret.data.id + "</b>"
-    document.getElementById("bio").innerHTML = ret.data.bio.replace(/\n/g, "<br>")
+    document.getElementById("bio").innerHTML = bio.replace(/\n/g, "<br>")
     document.title = "AbSq || " + ret.data.username
 
     client
