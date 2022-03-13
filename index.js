@@ -25,7 +25,7 @@ async function getAllUsers(){
     )
     .then(function (x) {
         for (let i = 0; i < x.data.length; i++) {
-        users.push({id: x.data[i].data.id, username:  x.data[i].data.username, profile_image:  x.data[i].data.profile_image, user_colour: x.data[i].data.colour})
+        users.push({id: x.data[i].data.id, username:  x.data[i].data.username, profile_image:  x.data[i].data.profile_image, user_colour: x.data[i].data.colour, sparkle: x.data[i].data.sparkle})
         }
 
     });
@@ -66,6 +66,12 @@ async function getPasteInfo(){
         for (let i = 0; i < images.length; i++) {
           content = content.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i].replace(/\[image\]/g, "")  + "\">")
         }
+      }
+      
+      let sparkle = ""
+        if(users[userinfo].sparkle == true)
+      {
+            sparkle = "background-image: url('https://cdn.doxbin.com/gold.gif')"
       }
 
           document.getElementById("title").innerHTML = ret.data.title
