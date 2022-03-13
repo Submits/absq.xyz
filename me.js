@@ -58,9 +58,10 @@ function getInfo(){
 
         
         for (let i = 0; i < x.data.length; i++) {
-        pastecount += 1
+
             if(x.data[i].data.author_id == localStorage.getItem("absqId"))
             {
+                      pastecount += 1
                 console.log(x.data[i])
                 document.getElementById("pastes").innerHTML += `  <div id="pasteDiv-` + x.data[i].ref.value.id  + `" class="pasteDiv">
                 <label class="loginLabel">&nbsp;Title</label><br>
