@@ -63,7 +63,7 @@ function getProfileData(){
               console.log(x.data[i])
              document.getElementById("pastes").innerHTML += `<div class="paste">
              <a href="https://submits.github.io?id=` + x.data[i].data.id + `" style="color: white; font-size: 20px;"><b>` +  x.data[i].data.title + `</b></a><br><br>
-             <p>Uploaded: <b>` +  x.data[i].data.timestamp + `</b><br>Device: <b>` +  x.data[i].data.device + `</b></p>
+             <p style="font-size:15px">Uploaded: <b>` +  x.data[i].data.timestamp + `</b><br>Device: <b>` +  x.data[i].data.device + `</b></p>
                      </div>`
           }
 
