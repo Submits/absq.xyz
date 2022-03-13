@@ -55,10 +55,10 @@ function getInfo(){
       .then(function (x) {
          
         x.data.reverse()
-        document.getElementById("yourpastes").innerText = "Your Pastes [" + x.data.length + "]"
-        pastecount = x.data.length
-        for (let i = 0; i < x.data.length; i++) {
 
+        
+        for (let i = 0; i < x.data.length; i++) {
+        pastecount += 1
             if(x.data[i].data.author_id == localStorage.getItem("absqId"))
             {
                 console.log(x.data[i])
@@ -76,6 +76,7 @@ function getInfo(){
             }
 
         }
+               document.getElementById("yourpastes").innerText = "Your Pastes [" + pastecount + "]"
   
       });
 
