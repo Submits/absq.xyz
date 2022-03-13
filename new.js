@@ -52,6 +52,6 @@ function makePaste(){
       .then(function(ret){
       
         toastr.success("Posted!")
-        document.getElementById("pasteID").innerHTML += "<br><br><a style=\"color:white\" href=\"" + "index.html?id=" + ret.data.id + "\">https://submits.github.io?id=" + ret.data.id + "</a>"
+        document.getElementById("pasteID").innerHTML += "<br><br>" + ret.data.title + " - <a style=\"color:white\" href=\"" + "https://www.absq.xyz/?id=" + ret.data.id + "\">https://www.absq.xyz/?id=" + ret.data.id + "</a>"
           })
 }
