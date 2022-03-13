@@ -61,12 +61,12 @@ async function getPasteInfo(){
           console.log(users[userinfo])
           console.log(ret.data)
 
-          /*let images = content.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g)
+          let images = content.match(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g)
           if(images != null){
           for (let i = 0; i < images.length; i++) {
             content = content.replace(images[i], "<img style=\"max-height:300px;\" src=\"" + images[i] + "\">")
           }
-        }*/
+        }
 
           document.getElementById("title").innerHTML = ret.data.title
          
