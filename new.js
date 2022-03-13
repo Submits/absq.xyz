@@ -42,6 +42,13 @@ const getDeviceType = () => {
 
 function makePaste(){
 
+  if(document.getElementById("title").value == "" || document.getElementById("content").value == "")
+  {
+    toastr.error("Please enter a title and content!")
+
+  }
+  else{
+    
     let date = new Date();
     client.query(
         q.Create(
@@ -54,4 +61,5 @@ function makePaste(){
         toastr.success("Posted!")
         document.getElementById("pasteID").innerHTML += "<br><br>" + ret.data.title + " - <a style=\"color:white\" href=\"" + "https://www.absq.xyz/?id=" + ret.data.id + "\">https://www.absq.xyz/?id=" + ret.data.id + "</a>"
           })
+  }
 }
