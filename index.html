@@ -104,7 +104,13 @@
     box-shadow: none !important;
     }
 
+.comments{
+        text-align: left;
+    }
 
+.comment{
+    margin-top: 20px;
+}
 </style>
 <body onload="getPasteInfo()">
     <div class="navbar">
@@ -121,5 +127,14 @@
     <div class="loginDivCredentials">
         <p id="content">Loading...</p>
     </div><br>
+	
+	<hr><br>
+    <p id="leaveComment">Leave a comment as Loading...</p>
+        <textarea id="commentText" class="loginTextArea"></textarea><br>
+        <div style="text-align: left;">
+        <button onclick="postComment()" class="loginButton">Post</button>
+    </div>
+    <div id="comments" class="comments">
+	     </div>
 </div>
 </body>
