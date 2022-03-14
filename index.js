@@ -112,9 +112,12 @@ let userinfopos = ""
           }
 
           let sparkle = ""
-          if(users[userinfopos].sparkle == true && ret.data.comments[i].user_id != 0)
+          if(ret.data.comments[i].user_id != 0)
         {
+          if(users[userinfopos].sparkle == true)
+          {
               sparkle = "background-image: url('https://cdn.doxbin.com/gold.gif')"
+          }
         }
 
         let colour = ""
@@ -122,7 +125,10 @@ let userinfopos = ""
           colour = "#ffffff"
         }
         else{
+          if(ret.data.comments[i].user_id != 0)
+          {
           colour = users[userinfopos].user_colour
+          }
         }
 
         let href = ""
