@@ -83,6 +83,64 @@ async function getPasteInfo(){
             document.getElementById("content").innerHTML += "<br><br><label style=\"color:#828282\"><i>This paste has been edited.</i></label>"
           }
           document.title = "AbSq || " + ret.data.title + " by " + users[userinfo].username
+      
+      
+      
+      if(localStorage.getItem("absqId") == null && localStorage.getItem("absqUsername") == null)
+          {
+            document.getElementById("leaveComment").innerHTML = "Leave a comment as <b>" + "Anonymous" + "</b>"
+          }
+          else{
+            document.getElementById("leaveComment").innerHTML = "Leave a comment as <b>" + localStorage.getItem("absqUsername") + "</b>"
+          }
+          ret.data.comments.reverse()
+          for (let i = 0; i < ret.data.comments.length; i++) {
+let userinfopos = ""
+
+            if(ret.data.comments[i].user_id == 0)
+            {
+              username = "Anonymous"
+            }
+            else{
+            userinfopos = users.findIndex(function(item, z) {
+              return item.id === ret.data.comments[i].user_id
+            });
+            username = users[userinfopos].username
+
+          }
+
+          let sparkle = ""
+          if(users[userinfo].sparkle == true && ret.data.comments[i].user_id != 0)
+        {
+              sparkle = "background-image: url('https://cdn.doxbin.com/gold.gif')"
+        }
+
+        let colour = ""
+        if(ret.data.comments[i].user_id == 0){
+          colour = "#ffffff"
+        }
+        else{
+          colour = users[userinfo].user_colour
+        }
+
+        let href = ""
+        if(ret.data.comments[i].user_id == 0){
+          href = ""
+        }
+        else{
+          href = "href= \"https://www.absq.xyz/profile?id=" + users[userinfopos].id + "\""
+        }
+
+
+          
+          document.getElementById("comments").innerHTML += `<div class="comment">
+          <a ` + href + ` style="font-size: 16px;` + sparkle + `; color: ` + colour + `"><b>` + username + `</b> </a> &bull;<label style="color: #adadad;"> ` +  ret.data.comments[i].timestamp + `</label><br>
+          <p>` + ret.data.comments[i].content + `</p>
+      </div>`
+
+            
+
+          }
 
 
           
@@ -103,4 +161,59 @@ async function getPasteInfo(){
       });
 
 
+    
   }
+
+
+
+
+
+
+function postComment(){
+
+    let urlParams = new URLSearchParams(window.location.search);
+    if( document.getElementById("commentText").value == "")
+    {
+        toastr.error("Please fill out all fields before posting a comment.")
+    }
+    else
+    {
+client.query(
+q.Get(
+q.Match(q.Index('paste_by_id'), urlParams.get('id'))
+)
+)
+.then(function(ret){ 
+
+  let userId = ""
+  if(localStorage.getItem("absqId") == null)
+  {
+    userId = 0
+  }
+  else{
+    userId = parseInt(localStorage.getItem("absqId"))
+  }
+let newTime = new Date();
+let comments = ret.data.comments
+comments.push({timestamp: newTime.toUTCString(), content: document.getElementById("commentText").value, user_id: userId})
+client.query(
+q.Update(q.Ref(q.Collection("pastes"), ret.ref.value.id), {
+data: {
+  comments: comments
+},
+})
+);
+
+toastr.success("Message posted!")
+})
+
+.catch(function(e){
+
+
+console.log(e)
+
+});
+
+    }
+    
+}
