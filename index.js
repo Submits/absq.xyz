@@ -96,6 +96,8 @@ async function getPasteInfo(){
             document.getElementById("leaveComment").innerHTML = "Leave a comment as <b>" + localStorage.getItem("absqUsername") + "</b>"
           }
           ret.data.comments.reverse()
+                document.getElementById("commentcount").innerHTML = "Comments [" + ret.data.comments.length + "]"
+
           for (let i = 0; i < ret.data.comments.length; i++) {
 let userinfopos = ""
 
@@ -143,7 +145,7 @@ let userinfopos = ""
           
           document.getElementById("comments").innerHTML += `<div class="comment">
           <a ` + href + ` style="font-size: 16px;` + sparkle + `; color: ` + colour + `"><b>` + username + `</b> </a> &bull;<label style="color: #adadad;"> ` +  ret.data.comments[i].timestamp + `</label><br>
-          <p>` + ret.data.comments[i].content + `</p>
+          <p>` + ret.data.comments[i].content.replace(/\n/g, "<br>") + `</p>
       </div>`
 
             
