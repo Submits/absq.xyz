@@ -122,7 +122,7 @@ let userinfopos = ""
           colour = "#ffffff"
         }
         else{
-          colour = users[userinfo].user_colour
+          colour = users[userinfopos].user_colour
         }
 
         let href = ""
