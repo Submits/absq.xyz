@@ -112,7 +112,7 @@ let userinfopos = ""
           }
 
           let sparkle = ""
-          if(users[userinfo].sparkle == true && ret.data.comments[i].user_id != 0)
+          if(users[userinfopos].sparkle == true && ret.data.comments[i].user_id != 0)
         {
               sparkle = "background-image: url('https://cdn.doxbin.com/gold.gif')"
         }
