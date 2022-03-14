@@ -13,6 +13,8 @@ function sleep(milisec) {
     }
 
 let users = []
+let username = ""
+
 
 async function getAllUsers(){
 
