@@ -84,7 +84,7 @@ function getProfileData(){
               console.log(x.data[i])
              document.getElementById("pastes").innerHTML += `<div class="paste">
              <a href="https://submits.github.io?id=` + x.data[i].data.id + `" style="color: white; font-size: 20px;"><b>` +  x.data[i].data.title + `</b></a><br><br>
-             <p style="font-size:15px">Uploaded: <b>` +  x.data[i].data.timestamp + `</b><br>Device: <b>` +  x.data[i].data.device + `</b></p>
+             <p style="font-size:15px">Uploaded: <b>` +  calcDate(new Date(x.data[i].data.timestamp)) + `</b><br>Device: <b>` +  x.data[i].data.device + `</b></p>
                      </div>`
           }
 
@@ -104,3 +104,33 @@ function getProfileData(){
       });
 
 }
+
+function calcDate(date)
+    {
+dateNow = new Date();
+dateThen = new Date(date);
+const diffTime = Math.abs(dateThen - dateNow);
+let seconds = Math.round(diffTime / 1000)
+let minutes = Math.round(diffTime / 1000 / 60)
+let hours =  Math.round(diffTime / 1000 / 60 / 60)
+let days = Math.round(diffTime / 1000 / 60 / 60 / 24)
+let years = Math.round(diffTime / 1000 / 60 / 60 / 24 / 365)
+
+        
+       if(seconds >= 1 && seconds < 60){
+    return seconds + " seconds ago"
+}
+else if(minutes >= 1 && minutes < 60){
+    return minutes + " minutes ago"
+}
+else if(hours >= 1 && hours < 24){
+    return hours + " hours ago"
+}
+else if(days >= 1 && days < 365){
+    return days + " days ago"
+}
+else if(years >= 1){
+    return years + " years ago"
+}
+        
+    }
