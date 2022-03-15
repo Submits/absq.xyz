@@ -69,7 +69,7 @@ function getProfileData(){
     if(ret.data.private_pastes == true)
     {
 
-      document.getElementById("pastes").innerHTML = "<b>" + ret.data.username + "</b> has privated their pastes."
+      document.getElementById("pastes").innerHTML = "<div style=\"text-align:center\"><p><b>" + ret.data.username + "</b> has privated their pastes.</p></div>"
     }
     else{
 
