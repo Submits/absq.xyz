@@ -196,7 +196,10 @@
         <label class="loginLabel">&nbsp;Bio</label><br>
         <textarea id="bio" placeholder="Bio" class="loginTextArea"></textarea><br><br>
         <label class="loginLabel">&nbsp;User Colour</label><br>
-        <input id="colour" class="loginInput" type="color">
+        <input id="colour" class="loginInput" type="color"><br><br>
+        <label id="privateLabel" class="loginLabel">&nbsp;Private Pastes</label><br><br>
+        <button id="on" onclick="updatePrivacyOn()" class="loginButton">On</button>
+        <button id="off" onclick="updatePrivacyOff()" class="loginButton">Off</button>
     </div><br>
     <button onclick="saveProfile()" class="loginButton">Save Profile</button>
     <button onclick="logOut()" class="redButton">Log Out</button>
