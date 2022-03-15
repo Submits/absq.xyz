@@ -9,6 +9,7 @@ var client = new faunadb.Client({
 let pastecount = 0
 
 let users = []
+let privatePastes
 
 
 
@@ -37,7 +38,21 @@ function getInfo(){
         document.getElementById("bio").value = ret.data.bio
         document.getElementById("colour").value = ret.data.colour
        document.getElementById("profileurl").innerHTML += `<br>Profile link: <a style="color:white" href="https://www.absq.xyz/profile?id=` + ret.data.id + `">https://www.absq.xyz/profile?id=` + ret.data.id + `</a>`
-      
+      privatePastes = ret.data.private_pastes
+        if(privatePastes == true)
+        {
+          document.getElementById("on").disabled = true
+          document.getElementById("on").style.cursor = "not-allowed"
+          document.getElementById("privateLabel").innerHTML += " [On]"
+          
+        }
+        else{
+          document.getElementById("off").disabled = true
+          document.getElementById("off").style.cursor = "not-allowed"
+          document.getElementById("privateLabel").innerHTML += " [Off]"
+        }
+       
+       
       })
         
       .catch(function(e){
@@ -148,7 +163,8 @@ function saveProfile(){
             password: document.getElementById("password").value,
             profile_image: document.getElementById("pfp").value,
             bio: document.getElementById("bio").value,
-            colour:  document.getElementById("colour").value
+            colour:  document.getElementById("colour").value,
+            private_pastes: privatePastes
   
   
           },
@@ -183,4 +199,33 @@ function logOut(){
     localStorage.removeItem('absqId');
     localStorage.removeItem('absqUsername');
     window.location.href = "login.html"
+}
+
+
+function updatePrivacyOn(){
+
+
+  document.getElementById("off").disabled = false
+  document.getElementById("off").style.cursor = "pointer"
+  document.getElementById("privateLabel").innerHTML = "Private Pastes [On]"
+
+  document.getElementById("on").disabled = true
+  document.getElementById("on").style.cursor = "not-allowed"
+
+  privatePastes = true
+  
+}
+
+function updatePrivacyOff(){
+
+
+  document.getElementById("on").disabled = false
+  document.getElementById("on").style.cursor = "pointer"
+  document.getElementById("privateLabel").innerHTML = "Private Pastes [Off]"
+
+  document.getElementById("off").disabled = true
+  document.getElementById("off").style.cursor = "not-allowed"
+
+  privatePastes = false
+  
 }
