@@ -64,6 +64,15 @@ function getProfileData(){
     document.getElementById("uid").innerHTML = "UID: <b>" + ret.data.id + "</b>"
     document.getElementById("bio").innerHTML = bio.replace(/\n/g, "<br>")
     document.title = "AbSq || " + ret.data.username
+      
+      
+    if(ret.data.private_pastes == true)
+    {
+
+      document.getElementById("pastes").innerHTML = "<b>" + ret.data.username + "</b> has privated their pastes."
+    }
+    else{
+
 
     client
     .query(
@@ -93,7 +102,7 @@ function getProfileData(){
 
     });
 
-
+    }
 
       })
       .catch(function(e){
