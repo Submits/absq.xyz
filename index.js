@@ -78,7 +78,7 @@ async function getPasteInfo(){
 
           document.getElementById("title").innerHTML = ret.data.title
          
-          document.getElementById("info").innerHTML = `Uploaded by <a style="color:` + users[userinfo].user_colour + `;` + sparkle +`" href="https://www.absq.xyz/profile?id=` + users[userinfo].id  + `"><b>` + users[userinfo].username + `</b></a> on <b>` + calcDate(new Date(ret.data.timestamp)) + "</b><br>Device: <b>" + ret.data.device + "</b>"
+          document.getElementById("info").innerHTML = `Uploaded by <a style="color:` + users[userinfo].user_colour + `;` + sparkle +`" href="https://www.absq.xyz/profile?id=` + users[userinfo].id  + `"><b>` + users[userinfo].username + `</b></a> &bull; <b>` + calcDate(new Date(ret.data.timestamp)) + "</b><br>Device: <b>" + ret.data.device + "</b>"
           document.getElementById("content").innerHTML = content.replace(/\n/g, "<br>")
           if(ret.data.edited == true)
           {
