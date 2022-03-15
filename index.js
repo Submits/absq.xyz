@@ -78,7 +78,7 @@ async function getPasteInfo(){
 
           document.getElementById("title").innerHTML = ret.data.title
          
-          document.getElementById("info").innerHTML = `Uploaded by <a style="color:` + users[userinfo].user_colour + `;` + sparkle +`" href="https://www.absq.xyz/profile?id=` + users[userinfo].id  + `"><b>` + users[userinfo].username + `</b></a> on <b>` + ret.data.timestamp + "</b><br>Device: <b>" + ret.data.device + "</b>"
+          document.getElementById("info").innerHTML = `Uploaded by <a style="color:` + users[userinfo].user_colour + `;` + sparkle +`" href="https://www.absq.xyz/profile?id=` + users[userinfo].id  + `"><b>` + users[userinfo].username + `</b></a> on <b>` + calcDate(new Date(ret.data.timestamp)) + "</b><br>Device: <b>" + ret.data.device + "</b>"
           document.getElementById("content").innerHTML = content.replace(/\n/g, "<br>")
           if(ret.data.edited == true)
           {
@@ -144,7 +144,7 @@ let userinfopos = ""
 
           
           document.getElementById("comments").innerHTML += `<div class="comment">
-          <a ` + href + ` style="font-size: 16px;` + sparkle + `; color: ` + colour + `"><b>` + username + `</b> </a> &bull;<label style="color: #adadad;"> ` +  ret.data.comments[i].timestamp + `</label><br>
+          <a ` + href + ` style="font-size: 16px;` + sparkle + `; color: ` + colour + `"><b>` + username + `</b></a> <label style="color: #adadad;"> &bull; ` +  calcDate(new Date(ret.data.comments[i].timestamp)) + `</label><br>
           <p>` + ret.data.comments[i].content.replace(/\n/g, "<br>") + `</p>
       </div>`
 
@@ -227,3 +227,33 @@ console.log(e)
     }
     
 }
+
+function calcDate(date)
+    {
+dateNow = new Date();
+dateThen = new Date(date);
+const diffTime = Math.abs(dateThen - dateNow);
+let seconds = Math.round(diffTime / 1000)
+let minutes = Math.round(diffTime / 1000 / 60)
+let hours =  Math.round(diffTime / 1000 / 60 / 60)
+let days = Math.round(diffTime / 1000 / 60 / 60 / 24)
+let years = Math.round(diffTime / 1000 / 60 / 60 / 24 / 365)
+
+        
+       if(seconds >= 1 && seconds < 60){
+    return seconds + " seconds ago"
+}
+else if(minutes >= 1 && minutes < 60){
+    return minutes + " minutes ago"
+}
+else if(hours >= 1 && hours < 24){
+    return hours + " hours ago"
+}
+else if(days >= 1 && days < 365){
+    return days + " days ago"
+}
+else if(years >= 1){
+    return years + " years ago"
+}
+        
+    }
