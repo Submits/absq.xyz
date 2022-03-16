@@ -7,6 +7,7 @@ var client = new faunadb.Client({
 })
 
 let pastecount = 0
+let followers = []
 
 let urlParams = new URLSearchParams(window.location.search);
 
@@ -19,6 +20,35 @@ function getProfileData(){
       )
             
       .then(function(ret) {
+      
+      document.getElementById("followButton").onclick = function() {follow(ret.ref.value.id)}
+
+    if( ret.data.followers.length == 1)
+    {
+      document.getElementById("followers").innerHTML =  ret.data.followers.length + " Follower"
+    }
+    else{
+    document.getElementById("followers").innerHTML =  ret.data.followers.length + " Followers"
+    }
+    followers = ret.data.followers
+
+      
+            userinfopos = ret.data.followers.findIndex(function(item, z) {
+              return item.id === parseInt(localStorage.getItem("absqId"))
+            });
+            console.log(userinfopos)
+
+            if(userinfopos != -1)
+            {
+              document.getElementById("followButton").disabled = "true"
+              document.getElementById("followButton").style.cursor = "not-allowed"
+              document.getElementById("followButton").innerHTML = "Following"
+              document.getElementById("followButton").style.color = "#ababab"
+            }
+      
+         
+      
+      
        
         let verified = ""
         let admin = ""
@@ -142,4 +172,37 @@ else if(years >= 1){
     return years + " years ago"
 }
         
+    }
+
+
+
+    function follow(id){
+
+console.log(followers)
+      followers.push({id: parseInt(localStorage.getItem("absqId"))})
+      console.log(followers)
+      client.query(
+        q.Update(q.Ref(q.Collection("users"), id), {
+        data: {
+          followers: followers
+
+
+        },
+        })
+        ).then(function(ret){ 
+        
+
+          document.getElementById("followButton").disabled = "true"
+          document.getElementById("followButton").style.cursor = "not-allowed"
+          document.getElementById("followButton").innerHTML = "Following"
+          document.getElementById("followButton").style.color = "#ababab"
+        toastr.success("Followed!")
+
+
+        })
+
+
+
+
+
     }
