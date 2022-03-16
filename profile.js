@@ -45,6 +45,21 @@ function getProfileData(){
               document.getElementById("followButton").innerHTML = "Following"
               document.getElementById("followButton").style.color = "#ababab"
             }
+       if(localStorage.getItem("absqId") == null || localStorage.getItem("absqUsername") == null)
+            {
+              document.getElementById("followButton").disabled = "true"
+              document.getElementById("followButton").style.cursor = "not-allowed"
+              document.getElementById("followButton").innerHTML = "Follow"
+              document.getElementById("followButton").style.color = "#ababab"
+            }
+
+            if(localStorage.getItem("absqId") == parseInt(urlParams.get("id")))
+          {
+            document.getElementById("followButton").disabled = "true"
+            document.getElementById("followButton").style.cursor = "not-allowed"
+            document.getElementById("followButton").innerHTML = "Follow"
+            document.getElementById("followButton").style.color = "#ababab"
+          }
       
          
       
@@ -197,6 +212,14 @@ console.log(followers)
           document.getElementById("followButton").innerHTML = "Following"
           document.getElementById("followButton").style.color = "#ababab"
         toastr.success("Followed!")
+        followercount += 1
+        if(followercount == 1)
+        {
+          document.getElementById("followers").innerHTML =  followercount + " Follower"
+        }
+        else{
+        document.getElementById("followers").innerHTML =  followercount + " Followers"
+        }
 
 
         })
