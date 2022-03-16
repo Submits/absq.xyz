@@ -136,11 +136,18 @@ function getProfileData(){
           if(x.data[i].data.author_id == ret.data.id)
           {
                   pastecount += 1
+            if(pastecount > 5)
+            {
+              document.getElementById("pastelimit").style.display = "block"
+              document.getElementById("pastelimit").innerHTML = "Only showing 5 of " + pastecount + " pastes."
+            }
+            else{
               console.log(x.data[i])
              document.getElementById("pastes").innerHTML += `<div class="paste">
              <a href="https://submits.github.io?id=` + x.data[i].data.id + `" style="color: white; font-size: 20px;"><b>` +  x.data[i].data.title + `</b></a><br><br>
              <p style="font-size:15px">Uploaded: <b>` +  calcDate(new Date(x.data[i].data.timestamp)) + `</b><br>Device: <b>` +  x.data[i].data.device + `</b></p>
                      </div>`
+            }
           }
 
       }
