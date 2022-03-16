@@ -8,6 +8,7 @@ var client = new faunadb.Client({
 
 let pastecount = 0
 let followers = []
+let followercount = 0
 
 let urlParams = new URLSearchParams(window.location.search);
 
@@ -30,7 +31,8 @@ function getProfileData(){
     else{
     document.getElementById("followers").innerHTML =  ret.data.followers.length + " Followers"
     }
-    followers = ret.data.followers
+      followers = ret.data.followers
+     followercount = ret.data.followers.length
 
       
             userinfopos = ret.data.followers.findIndex(function(item, z) {
@@ -40,12 +42,12 @@ function getProfileData(){
 
             if(userinfopos != -1)
             {
-              document.getElementById("followButton").disabled = "true"
-              document.getElementById("followButton").style.cursor = "not-allowed"
-              document.getElementById("followButton").innerHTML = "Following"
-              document.getElementById("followButton").style.color = "#ababab"
+              document.getElementById("followButton").innerHTML = "Unfollow"
+              document.getElementById("followButton").onclick = function() {unfollow(ret.ref.value.id)}
+
             }
-       if(localStorage.getItem("absqId") == null || localStorage.getItem("absqUsername") == null)
+      
+            if(localStorage.getItem("absqId") == null || localStorage.getItem("absqUsername") == null)
             {
               document.getElementById("followButton").disabled = "true"
               document.getElementById("followButton").style.cursor = "not-allowed"
@@ -60,7 +62,6 @@ function getProfileData(){
             document.getElementById("followButton").innerHTML = "Follow"
             document.getElementById("followButton").style.color = "#ababab"
           }
-      
          
       
       
@@ -191,7 +192,7 @@ else if(years >= 1){
 
 
 
-    function follow(id){
+     function follow(id){
 
 console.log(followers)
       followers.push({id: parseInt(localStorage.getItem("absqId"))})
@@ -206,11 +207,8 @@ console.log(followers)
         })
         ).then(function(ret){ 
         
-
-          document.getElementById("followButton").disabled = "true"
-          document.getElementById("followButton").style.cursor = "not-allowed"
-          document.getElementById("followButton").innerHTML = "Following"
-          document.getElementById("followButton").style.color = "#ababab"
+          document.getElementById("followButton").innerHTML = "Unfollow"
+          document.getElementById("followButton").onclick = function() {unfollow(ret.ref.value.id)}
         toastr.success("Followed!")
         followercount += 1
         if(followercount == 1)
@@ -224,6 +222,48 @@ console.log(followers)
 
         })
 
+
+
+
+
+    }
+
+
+    function unfollow(id){
+
+      userinfopos = followers.findIndex(function(item, z) {
+        return item.id === parseInt(localStorage.getItem("absqId"))
+      });
+      console.log(userinfopos)
+      if(userinfopos != -1){
+      followers.splice(userinfopos, 1)
+     console.log(followers)
+      }
+
+      client.query(
+        q.Update(q.Ref(q.Collection("users"), id), {
+        data: {
+          followers: followers
+
+
+        },
+        })
+        ).then(function(ret){ 
+        
+          document.getElementById("followButton").innerHTML = "Follow"
+          document.getElementById("followButton").onclick = function() {follow(ret.ref.value.id)}
+        toastr.success("Unfollowed!")
+        followercount -= 1
+        if(followercount == 1)
+        {
+          document.getElementById("followers").innerHTML =  followercount + " Follower"
+        }
+        else{
+        document.getElementById("followers").innerHTML =  followercount + " Followers"
+        }
+
+
+        })
 
 
 
