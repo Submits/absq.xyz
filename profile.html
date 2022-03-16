@@ -37,6 +37,19 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
 	padding: 14px 16px;
 	font-size: 23px;
   }
+	
+	.loginButton{
+        border: none;
+        padding: 10px;
+        background-color: #161616;
+        color: white;
+        font-family: sans-serif;
+        cursor: pointer;
+    }
+    .loginButton:hover{
+        background-color: #202020;
+    }
+
 
     body{
         text-align: center;
@@ -153,8 +166,9 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
 <div class="left">
 <label id="username">Loading...</label><br><br>
 <img id="pfp"><br><br>
-<label id="uid" style="float:left; background-color: #161616; width:100%; font-size:14px; padding-top:5px; padding-bottom:5px; border-radius:2px;">UID: Loading...</label><br>
-
+<label id="uid" style="float:left; background-color: #161616; width:100%; font-size:14px; padding-top:5px; padding-bottom:5px; border-radius:2px;">UID: Loading...</label><br><br>
+<label id="followers" style="float:left; background-color: #161616; width:100%; font-size:14px; padding-top:5px; padding-bottom:5px; border-radius:2px;">0 Followers</label><br><br>
+<button id="followButton" class="loginButton">Follow</button><br>
 </div>
 <div class="right">
     <p id="bio">Loading...</p>
