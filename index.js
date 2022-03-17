@@ -246,7 +246,7 @@ let years = Math.round(diffTime / 1000 / 60 / 60 / 24 / 365)
           return seconds + " second ago"
         }
         else{
-          return second + " seconds ago"
+          return seconds + " seconds ago"
         }
 }
 else if(minutes >= 1 && minutes < 60){
